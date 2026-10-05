@@ -1,0 +1,60 @@
+<core:FragmentDefinition
+  xmlns="sap.m"
+  xmlns:core="sap.ui.core">
+
+  <Dialog id="createOrderDialog" title="Create Order" class="sapUiResponsivePadding">
+
+    <VBox class="sapUiSmallMargin">
+
+      <Label text="Customer Name" />
+      <Input value="{orderModel>/customerName}" />
+
+      <Label text="Order Items" />
+
+      <Table items="{orderModel>/Items}">
+        <columns>
+          <Column><Text text="Product" /></Column>
+          <Column hAlign="Center"><Text text="Qty" /></Column>
+          <Column width="3rem" />
+        </columns>
+
+        <items>
+          <ColumnListItem>
+            <cells>
+
+              <Select
+                selectedKey="{orderModel>product_ID}"
+                forceSelection="false"
+                items="{path:'/Products', templateShareable:false}">
+                <core:Item key="{ID}" text="{title}" />
+              </Select>
+
+              <Input
+                value="{orderModel>quantity}"
+                type="Number"
+                width="5rem" />
+
+              <Button
+                icon="sap-icon://delete"
+                type="Transparent"
+                press=".onDeleteItemRow" />
+
+            </cells>
+          </ColumnListItem>
+        </items>
+      </Table>
+
+      <Button
+        text="Add Product"
+        icon="sap-icon://add"
+        press=".onAddItemRow" />
+
+    </VBox>
+
+    <buttons>
+      <Button text="Create" type="Emphasized" press=".onCreateOrderSave" />
+      <Button text="Cancel" press=".onCreateOrderCancel" />
+    </buttons>
+
+  </Dialog>
+</core:FragmentDefinition>

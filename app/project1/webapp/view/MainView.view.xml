@@ -1,0 +1,67 @@
+<mvc:View
+    controllerName="com.capm.ui1.project1.controller.MainView"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+
+    <Page
+        title="Shop Dashboard">
+
+        <headerContent>
+
+    <Button
+        text="Create Order"
+        icon="sap-icon://add"
+        type="Emphasized"
+        press=".onOpenCreateDialogOrder"/>
+
+</headerContent>
+
+        <content>
+
+            <VBox class="sapUiMediumMargin">
+
+                <Title
+                    text="Business Overview"
+                    level="H2" />
+
+                <HBox
+                    justifyContent="SpaceAround"
+                    class="sapUiMediumMarginTop">
+
+                    <GenericTile
+                        header="Products"
+                        press=".onProductsPress">
+
+                        <tileContent>
+                            <TileContent>
+                                <NumericContent
+                                    value="{dashboard>/totalProducts}"
+                                    valueColor="Good"/>
+                            </TileContent>
+                        </tileContent>
+
+                    </GenericTile>
+
+                    <GenericTile
+                        header="Orders"
+                        press=".onOrdersPress">
+
+                        <tileContent>
+                            <TileContent>
+                                <NumericContent
+                                    value="{dashboard>/totalOrders}"
+                                    valueColor="Good"/>
+                            </TileContent>
+                        </tileContent>
+
+                    </GenericTile>
+
+                </HBox>
+
+            </VBox>
+
+        </content>
+
+    </Page>
+
+</mvc:View>

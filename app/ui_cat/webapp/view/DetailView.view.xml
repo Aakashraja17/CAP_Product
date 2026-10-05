@@ -1,0 +1,90 @@
+<mvc:View
+  controllerName="com.capm.ui.uicat.controller.DetailView"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns="sap.m">
+
+  <Page id="detailPage" title="Order Details">
+    <content>
+
+      <!-- Order header -->
+      <ObjectHeader
+        id="ohOrder"
+        title="{orderNumber}"
+        number="{customerName}"
+        intro="Order"
+        responsive="true" />
+
+      <!-- Optional: show audit info -->
+      <HBox class="sapUiSmallMarginBottom" renderType="Bare">
+        <Text text="Created: "/>
+        <Text text="{path: 'createdAt'}"/>
+        <ToolbarSpacer/>
+        <Text text="Modified: "/>
+        <Text text="{path: 'modifiedAt'}"/>
+      </HBox>
+
+      <!-- Order Items -->
+      <Panel headerText="Items" expandable="false">
+        <Table
+  id="itemsTable"
+  items="{
+    path: 'Items',
+    parameters: {
+      $expand: { product: { $select: ['title','price'] } },
+      $select: ['quantity','product_ID']
+    }
+  }">
+
+          <columns>
+            <Column><Text text="Product"/></Column>
+            <Column hAlign="End"><Text text="Qty"/></Column>
+            <Column hAlign="End"><Text text="Price"/></Column>
+            <Column hAlign="End"><Text text="Subtotal"/></Column>
+          </columns>
+
+          <items>
+            <ColumnListItem>
+              <cells>
+                <!-- product is expanded via $expand above -->
+                <ObjectIdentifier
+                  title="{product/title}"
+                  text="{product_ID}" />
+                <ObjectNumber number="{quantity}" unit="pcs"/>
+
+                <!-- Show product.price if available -->
+                <ObjectNumber
+                  number="{path: 'product/price'}"
+                  unit="₹" />
+
+                
+          <ObjectNumber
+  unit="₹"
+  number="{
+    parts: [
+      { path: 'quantity' },
+      { path: 'product/price' }
+    ],
+    formatter: '.formatter.subtotal'
+  }" />
+              </cells>
+            </ColumnListItem>
+          </items>
+        </Table>
+      </Panel>
+
+    </content>
+    
+<footer>
+      <Bar>
+        <contentRight>
+          <Text text="Grand Total: "/>
+          <ObjectNumber
+            id="grandTotalObjNum"
+            unit="₹"
+            number="{view>/grandTotal}"/>
+        </contentRight>
+      </Bar>
+    </footer>
+
+  </Page>
+</mvc:View>

@@ -1,0 +1,34 @@
+<mvc:View controllerName="com.capm.ui.uicat.controller.MainView"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+    <Page id="page" title="Orders">
+
+<subHeader>
+      <OverflowToolbar>
+        <Button
+          text="Create"
+          type="Emphasized"
+          icon="sap-icon://add"
+          press=".onOpenCreateDialogOrder"/>
+        <ToolbarSpacer/>
+        <!-- (Optional) a search for the Orders list -->
+        <!-- <SearchField width="20rem" search=".onSearchOrders"/> -->
+      </OverflowToolbar>
+    </subHeader>
+
+    <List
+      id="ordersList"
+      items="{ path: '/Orders' }"
+      mode="None"
+      itemPress=".onOrderPress">
+
+      <!-- Make the item clickable -->
+      <StandardListItem
+        type="Navigation"
+        title="{orderNumber}"
+        description="{customerName}"
+        info="{createdAt}" />
+    </List>
+  </Page>
+
+</mvc:View>

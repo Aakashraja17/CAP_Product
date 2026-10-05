@@ -1,0 +1,31 @@
+<mvc:View
+    controllerName="com.capm.ui1.project1.controller.Orders"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+
+    <Page
+        title="Orders"
+        showNavButton="true"
+        navButtonPress=".onNavBack">
+
+        <content>
+
+            <List
+      id="ordersList"
+      items="{ path: '/Orders' }"
+      mode="None"
+      itemPress=".onOrderPress">
+
+      <!-- Make the item clickable -->
+      <StandardListItem
+        type="Navigation"
+        title="{orderNumber}"
+        description="{customerName}"
+        info="{createdAt}" />
+    </List>
+
+        </content>
+
+    </Page>
+
+</mvc:View>

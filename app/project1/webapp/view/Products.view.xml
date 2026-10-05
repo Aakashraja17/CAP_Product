@@ -1,0 +1,31 @@
+<mvc:View
+    controllerName="com.capm.ui1.project1.controller.Products"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+
+    <Page
+        title="Products"
+        showNavButton="true"
+        navButtonPress=".onNavBack">
+
+        <content>
+
+            <List
+                id="productsList"
+                items="{ path: '/Products' }"
+                mode="None"
+                itemPress=".onProductPress">
+
+                <StandardListItem
+                    type="Navigation"
+                    title="{title}"
+                    description="{= 'Stock: ' + ${stock} }"
+                    info="{price}" />
+
+            </List>
+
+        </content>
+
+    </Page>
+
+</mvc:View>

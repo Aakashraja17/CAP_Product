@@ -1,0 +1,144 @@
+{
+  "_version": "1.89.0",
+  "sap.app": {
+    "id": "com.capm.ui1.project1",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.32.0",
+      "toolsId": "1ffcc20a-a887-4e7b-89e0-81427aa04cdf"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/odata/v4/catalog/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "odataVersion": "4.0"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+
+    "dependencies": {
+      "minUI5Version": "1.152.0",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {}
+      }
+    },
+
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "com.capm.ui1.project1.i18n.i18n"
+        }
+      },
+
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      }
+    },
+
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "transition": "slide",
+        "type": "View",
+        "viewType": "XML",
+        "path": "com.capm.ui1.project1.view",
+        "viewPath": "com.capm.ui1.project1.view",
+        "async": true
+      },
+
+      "routes": [
+        {
+          "name": "RouteMainView",
+          "pattern": "",
+          "target": "TargetMainView"
+        },
+        {
+          "name": "Products",
+          "pattern": "products",
+          "target": "TargetProducts"
+        },
+        {
+          "name": "Orders",
+          "pattern": "orders",
+          "target": "TargetOrders"
+        }
+      ],
+
+      "targets": {
+        "TargetMainView": {
+          "id": "MainView",
+          "name": "MainView"
+        },
+
+        "TargetProducts": {
+          "id": "Products",
+          "name": "Products"
+        },
+
+        "TargetOrders": {
+          "id": "Orders",
+          "name": "Orders"
+        }
+      }
+    },
+
+    "rootView": {
+      "viewName": "com.capm.ui1.project1.view.App",
+      "type": "XML",
+      "id": "App",
+      "async": true
+    }
+  }
+}
